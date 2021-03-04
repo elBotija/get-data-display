@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>get-data-display</title>
+</head>
+<body>
+  <h1>get-data-display</h1>
+  <p>Data del dispositvo:</p>
+  <p>
+    navigator.platform: <span id="navigatorplatform"></span><br>
+    iosVersion: <span id="iosVersion"></span><br>
+    innerWidth: <span id="innerWidth"></span><br>
+    innerHeight: <span id="innerHeight"></span><br>
+    outerWidth: <span id="outerWidth"></span><br>
+    outerHeight: <span id="outerHeight"></span><br>
+  </p>
+  <script>
+    document.getElementById("innerHeight").innerHTML= window.innerHeight +"px"
+    document.getElementById("innerWidth").innerHTML= window.innerWidth +"px"
+    document.getElementById("outerHeight").innerHTML= window.outerHeight +"px"
+    document.getElementById("outerWidth").innerHTML= window.outerWidth +"px"
+    document.getElementById("navigatorplatform").innerHTML= navigator.platform
+    document.getElementById("iosVersion").innerHTML= iOSversion();
+ 
+    function iOS() {
+      return [
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod'
+      ].includes(navigator.platform)  
+      || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+    }
+    function iOSversion() {
+      if (iOS()) {
+        if (window.indexedDB) { return '8+'; }
+        if (window.SpeechSynthesisUtterance) { return '7'; }
+        if (window.webkitAudioContext) { return '6'; }
+        if (window.matchMedia) { return '5'; }
+        if (window.history && 'pushState' in window.history) { return '4'; }
+        return '3-';
+      }
+      return 'No';
+    }
+  </script>
+</body>
+</html>
